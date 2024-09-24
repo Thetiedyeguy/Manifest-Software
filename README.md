@@ -1,0 +1,1 @@
+Vectorworks Python Script that converts a vectorworks diagram into a Word Document for the University of California, Davis Student Unions. Detailed description of how it works/how to use it in the Manifest Creation Instructions.docx file
