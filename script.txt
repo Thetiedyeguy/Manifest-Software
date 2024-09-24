@@ -1,0 +1,346 @@
+# Imports
+from sys import path as syspath
+from os import path as ospath
+from math import sqrt
+import vs
+
+# Allows for importing libraries without installing them with pip
+syspath.append("\\\\crus-boston\\CR Events\\Memorial Union\\Event Files\\Manifest Software\\site-packages")
+syspath.append("\\\\crus-boston\\CR Events\\Memorial Union\\Event Files\\Manifest Software\\site-packages\\win32\\lib")
+syspath.append("\\\\crus-boston\\CR Events\\Memorial Union\\Event Files\\Manifest Software\\site-packages\\win32")
+
+# Said imported libraries
+import win32com.client as win32
+import pandas as pd
+
+# Extracts all the template information from the excel file
+def implement_template(delay, selected_output):
+	# Chooses which template to use based on building
+	if selected_output == 0:
+		df = pd.read_csv(r'\\crus-boston\CR Events\Memorial Union\Event Files\Manifest Software\PCL Manifest Template.csv')
+	elif selected_output == 1:
+		df = pd.read_csv(r'\\crus-boston\CR Events\Memorial Union\Event Files\Manifest Software\SCC Manifest Template.csv')
+	elif selected_output == 2:
+		df = pd.read_csv(r'\\crus-boston\CR Events\Memorial Union\Event Files\Manifest Software\MU Manifest Template.csv')
+	else:
+		return 0
+	
+	for index, row in df.iterrows():
+		if row['DELAY'] != delay:
+			continue
+		section = row['section']
+		text = row['Text']
+		if text == "GAP":
+			text = ""
+		if section == 'topOfPage':
+			topOfPage.append(text)
+			topOfPageBold.append(row['Bold'])
+			topOfPageUnderline.append(row['Underline'])
+			if row['linebreak after']:
+				topOfPage[len(topOfPage) - 1] += "\n"
+			if row['tab before']:
+				topOfPage[len(topOfPage) - 1] = "\t" + topOfPage[len(topOfPage) - 1]
+		elif section == 'listPortion':
+			listPortion.append(text)
+			listPortionBold.append(row['Bold'])
+			listPortionUnderline.append(row['Underline'])
+			listPortionLevel.append(row['listLevel'])
+			if row['linebreak after']:
+				listPortion[len(listPortion) - 1] += "\n"
+			if row['tab before']:
+				listPortion[len(listPortion) - 1] = "\t" + listPortion[len(listPortion) - 1]
+		elif section == 'notesPortion':
+			notesPortion.append(text)
+			notesPortionBold.append(row['Bold'])
+			notesPortionUnderline.append(row['Underline'])
+			notesPortionLevel.append(row['listLevel'])
+			if row['linebreak after']:
+				notesPortion[len(notesPortion) - 1] += "\n"
+			if row['tab before']:
+				notesPortion[len(notesPortion) - 1] = "\t" + notesPortion[len(notesPortion) - 1]
+		elif section == 'schedulePortion':
+			schedulePortion.append(text)
+			schedulePortionBold.append(row['Bold'])
+			schedulePortionUnderline.append(row['Underline'])
+			if row['linebreak after']:
+				schedulePortion[len(schedulePortion) - 1] += "\n"
+			if row['tab before']:
+				schedulePortion[len(schedulePortion) - 1] = "\t" + schedulePortion[len(schedulePortion) - 1]
+		elif section == 'contactPortion':
+			contactPortion.append(text)
+			contactPortionBold.append(row['Bold'])
+			contactPortionUnderline.append(row['Underline'])
+			if row['linebreak after']:
+				contactPortion[len(contactPortion) - 1] += "\n"
+			if row['tab before']:
+				contactPortion[len(contactPortion) - 1] = "\t" + contactPortion[len(contactPortion) - 1]
+
+def count_symbol_callback(h):
+	symbol_name = vs.GetSymName(h)
+
+	# Get Positional data for North catering tables and chair sections
+	x, y = vs.GetSymLoc(h)
+
+	# Attempts to remove small differences due to slight misplacements from sorting
+	x = round(x)
+	y = round(y)
+
+	if x > -365:
+
+		# Changes the symbol name for tables that should be categorized as catering tables
+		if (symbol_name == "6' Table" or symbol_name == "6ft table") and y > 200:
+			symbol_name = "Catering Table"
+
+		# Stores the position of all chairs
+		if symbol_name == 'Unarmed Chair' or symbol_name == 'Chair' or symbol_name == 'MRD Chair' or symbol_name == 'White Folding Chiar':
+			symbol_name = 'Chair'
+			chairsPos.append([x, y])
+			
+		if symbol_name == 'MPR- Podium':
+			if y < 0:
+				symbol_name = 'Left Podium'
+			else:
+				symbol_name = 'Right Podium'
+		
+		if symbol_name in symbol_list:
+			symbol_list[symbol_name] += 1
+		else:
+			symbol_list[symbol_name] = 1
+		
+def distance_from_zero(point):
+	return sqrt(point[0]**2 + point[1]**2)
+
+def get_sections():
+	sortedChairs = sorted(chairsPos, key=distance_from_zero)
+	list_str = "chairs: "
+	sections = [] # Each section has [minX, minY, maxX, maxY, count, rows] rows contains [x, count, x, count, ...] where x is where the row is located and count is the number of chairs in the row
+	for chair in sortedChairs:
+		x = chair[0]
+		y = chair[1]
+		foundSection = False
+		if sections != []:
+			for i in range(len(sections)):
+				if x > sections[i][0] and x < sections[i][2] and y > sections[i][1] and y < sections[i][3] and not foundSection:
+					sections[i][4] += 1
+					foundSection = True
+					foundRow = False
+					for j in range(len(sections[i][5])):
+						if j % 2 == 0 and abs(sections[i][5][j] - x) <= 10 and not foundRow:
+							sections[i][5][j + 1] += 1
+							foundRow = True
+					if not foundRow:
+						noRow = str(x) + ": "
+						for k in range(len(sections[i][5])):
+							if j % 2 == 0:
+								noRow += str(sections[i][5][j]) + ", "
+						sections[i][5].append(x)
+						sections[i][5].append(1)
+				elif x > sections[i][0] - 45 and x < sections[i][2] + 45 and y > sections[i][1] - 25 and y < sections[i][3] + 25 and not foundSection:
+					if x < sections[i][0]:
+						sections[i][0] = x
+					if x > sections[i][2]:
+						sections[i][2] = x
+					if y < sections[i][1]:
+						sections[i][1] = y
+					if y > sections[i][3]:
+						sections[i][3] = y
+					foundRow = False
+					for j in range(len(sections[i][5])):
+						if j % 2 == 0 and abs(sections[i][5][j] - x) <= 10 and not foundRow:
+							sections[i][5][j + 1] += 1
+							foundRow = True
+					if not foundRow:
+						noRow = str(x) + ": "
+						for k in range(len(sections[i][5])):
+							if j % 2 == 0:
+								noRow += str(sections[i][5][j]) + ", "
+						sections[i][5].append(x)
+						sections[i][5].append(1)
+					sections[i][4] += 1
+					foundSection = True
+					
+				
+		if not foundSection:
+			sections.append([x, y, x, y, 1, [x, 1]])
+			
+	count = 0
+	exclude = 0
+	count2 = 0
+	for i in range(len(sections)):
+		if sections[i][4] > 2:
+			count += sections[i][4]
+		else:
+			count2 += sections[i][4]
+			exclude += 1
+	if exclude == len(sections):
+		return str("Setup " + str(count2) + " chairs\n")
+	elif exclude == 0:
+		return str("Setup " + str(count) + " chairs in " + str(len(sections)) + " sections with " + str(round(len(sections[i][5]) / 2)) + " rows of " + str(sections[i][5][1]) + " chairs each\n")
+	else:
+		return str("Setup " + str(count) + " chairs in " + str(len(sections) - exclude) + " sections with " + str(round(len(sections[i][5]) / 2)) + " rows of " + str(sections[i][5][1]) + " chairs each\n" + "Setup " + str(count2) + " chairs\n")
+		
+def create_document(selected_output):
+
+	if selected_output == 0:
+		symbol_df = pd.read_csv(r'\\crus-boston\CR Events\Memorial Union\Event Files\Manifest Software\PCL symbols.csv')
+	elif selected_output == 1:
+		symbol_df = pd.read_csv(r'\\crus-boston\CR Events\Memorial Union\Event Files\Manifest Software\SCC symbols.csv')
+	elif selected_output == 2:
+		symbol_df = pd.read_csv(r'\\crus-boston\CR Events\Memorial Union\Event Files\Manifest Software\MU symbols.csv')
+	else:
+		return 0
+
+	global chairsPos
+	chairsPos = []
+
+	global topOfPage, topOfPageBold, topOfPageUnderline
+	topOfPage, topOfPageBold, topOfPageUnderline = [], [], []
+	
+	global listPortion, listPortionBold, listPortionUnderline, listPortionLevel
+	listPortion, listPortionBold, listPortionUnderline, listPortionLevel = [], [], [], []
+
+	global notesPortion, notesPortionBold, notesPortionUnderline, notesPortionLevel
+	notesPortion, notesPortionBold, notesPortionUnderline, notesPortionLevel = [], [], [], []
+
+	global schedulePortion, schedulePortionBold, schedulePortionUnderline
+	schedulePortion, schedulePortionBold, schedulePortionUnderline = [], [], []
+
+	global contactPortion, contactPortionBold, contactPortionUnderline
+	contactPortion, contactPortionBold, contactPortionUnderline = [], [], []
+				
+	global symbol_list
+	symbol_list = {}
+	
+	vs.ForEachObject(count_symbol_callback, "T=SYMBOL")
+
+	implement_template(False, selected_output)
+		
+	
+	for symbol_name, count in symbol_list.items():
+		row = symbol_df.loc[symbol_df['Name'] == symbol_name]
+		if not row.empty:
+			if row['Before Text'].values[0] == 'BLANK':
+				text = str(count) + ' ' + row['After Text'].values[0] + "\n"
+			else:
+				text = row['Before Text'].values[0] + ' ' + str(count) + ' ' + row['After Text'].values[0] + "\n"
+			if symbol_name == 'Unarmed Chair' or symbol_name == 'Chair' or symbol_name == 'MRD Chair':
+				text = get_sections()
+			if symbol_name != 'Left Podium' and symbol_name != 'Right Podium':
+				listPortion.append(text)
+				listPortionBold.append(False)
+				listPortionUnderline.append(False)
+				listPortionLevel.append(1)
+				
+	if symbol_list.get('Left Podium') != None:
+		row = symbol_df.loc[symbol_df['Name'] == 'Left Podium']
+		text = row['Before Text'].values[0] + ' ' + row['After Text'].values[0] + "\n"
+		listPortion.append(text)
+		listPortionBold.append(False)
+		listPortionUnderline.append(False)
+		listPortionLevel.append(1)
+	elif symbol_list.get('Right Podium') != None:
+		row = symbol_df.loc[symbol_df['Name'] == 'Right Podium']
+		text = row['Before Text'].values[0] + ' ' + row['After Text'].values[0] + "\n"
+		listPortion.append(text)
+		listPortionBold.append(False)
+		listPortionUnderline.append(False)
+		listPortionLevel.append(1)
+	
+	implement_template(True, selected_output)
+	word = win32.gencache.EnsureDispatch('Word.Application')
+	word.Visible = True # Set to False if you don't want Word to be visible
+	
+    # Create a new document
+	doc = word.Documents.Add()
+	doc.PageSetup.TopMargin = 0.8 * 72    # 1 inch top margin
+	doc.PageSetup.BottomMargin = 0.8 * 72  # 1 inch bottom margin
+	doc.PageSetup.LeftMargin = 0.8 * 72    # 1 inch left margin
+	doc.PageSetup.RightMargin = 0.8 * 72   # 1 inch right margin
+	doc.Content.Font.Size = 11
+	doc.Content.Font.Name = "Times New Roman"
+	doc.Content.ParagraphFormat.SpaceAfter = 0
+	doc.Content.ParagraphFormat.IndentLeft = 0.25 * 72
+
+	paragraph_image = doc.Content.Paragraphs.Add()
+	image_path = r"\\crus-boston\CR Events\Memorial Union\Event Files\Manifest Software\manifestPicture.png"
+	paragraph_image.Range.InlineShapes.AddPicture(FileName=image_path, LinkToFile=False, SaveWithDocument=True)
+    # Add content to the document
+    
+
+	paragraph = doc.Content.Paragraphs.Add()
+	paragraph.Range.Font.Type = "Times New Roman"
+	paragraph.Range.Text = ""
+	paragraph.TabStops.Add(Position=164)
+	for i in range(len(topOfPage)):
+		new_range = paragraph.Range
+		new_range.Collapse(Direction = win32.constants.wdCollapseEnd)
+		new_range.InsertAfter(topOfPage[i])
+		new_range.Bold = topOfPageBold[i]
+		new_range.Underline = topOfPageUnderline[i]
+	paragraph.TabStops.ClearAll()
+	paragraph.Range.Bold = False
+
+	listPoint = doc.Content.Paragraphs.Add()
+	for i in range(len(listPortion)):
+		listRange = listPoint.Range
+		listRange.Text = listPortion[i]
+		listRange.ListFormat.ApplyListTemplateWithLevel(
+			ListTemplate=word.ListGalleries(win32.constants.wdOutlineNumberGallery).ListTemplates(1),
+			ContinuePreviousList=True,
+			ApplyTo=win32.constants.wdListApplyToWholeList,
+			DefaultListBehavior=win32.constants.wdWord10ListBehavior
+        )
+		listRange.Bold = listPortionBold[i]
+		listRange.ListFormat.ListLevelNumber = listPortionLevel[i]
+	listPoint.Range.Bold = False
+
+	notes_intro = doc.Content.Paragraphs.Add()
+	notes_intro_range = notes_intro.Range
+	notes_intro_range.Text = "Notes:\n"
+	notes_intro_range.Bold = True
+	notes_intro_range.Underline = True
+
+	notes_paragraph = doc.Content.Paragraphs.Add()
+	for i in range(len(notesPortion)):
+		notes_range = notes_paragraph.Range
+		notes_range.Text = notesPortion[i]
+		notes_range.ListFormat.ApplyListTemplateWithLevel(
+			ListTemplate=word.ListGalleries(win32.constants.wdBulletGallery).ListTemplates(2),
+			ContinuePreviousList= i != 0,
+			ApplyTo=win32.constants.wdListApplyToWholeList,
+			DefaultListBehavior=win32.constants.wdWord10ListBehavior
+		)
+		notes_range.Bold = notesPortionBold[i]
+		notes_range.Underline = notesPortionUnderline[i]
+	notes_paragraph.TabStops.ClearAll()
+	notes_paragraph.Range.Bold = False
+
+	schedule_paragraph = doc.Content.Paragraphs.Add()
+	schedule_paragraph.Range.Font.Type = "Times New Roman"
+	schedule_paragraph.Range.Text = ""
+	schedule_paragraph.TabStops.Add(Position=144)
+	for i in range(len(schedulePortion)):
+		schedule_paragraph_range = schedule_paragraph.Range
+		schedule_paragraph_range.Collapse(Direction = win32.constants.wdCollapseEnd)
+		schedule_paragraph_range.InsertAfter(schedulePortion[i])
+		schedule_paragraph_range.Bold = schedulePortionBold[i]
+		schedule_paragraph_range.Underline = schedulePortionUnderline[i]
+	schedule_paragraph.TabStops.ClearAll()
+	schedule_paragraph.Format.FirstLineIndent = 0
+	schedule_paragraph.Range.Bold = False
+
+	contact_paragraph = doc.Content.Paragraphs.Add()
+	contact_paragraph.Range.Font.Type = "Times New Roman"
+	contact_paragraph.Range.Text = ""
+	contact_paragraph.TabStops.Add(Position=144)
+	for i in range(len(contactPortion)):
+		contact_paragraph_range = schedule_paragraph.Range
+		contact_paragraph_range.Collapse(Direction = win32.constants.wdCollapseEnd)
+		contact_paragraph_range.InsertAfter(contactPortion[i])
+		contact_paragraph_range.Bold = contactPortionBold[i]
+		contact_paragraph_range.Underline = contactPortionUnderline[i]
+	contact_paragraph.TabStops.ClearAll()
+	contact_paragraph.Format.FirstLineIndent = 0
+	
+selected_output = vs.AlertQuestion("What building is this for?", "", 0, "SCC", "PCL", "MU", "Cancel")
+create_document(selected_output)

@@ -1,0 +1,37 @@
+Name,Before Text,After Text,Ignore
+3' Cocktail Table,Setup,cocktail tables,FALSE
+5' Round,Setup,rounds,FALSE
+6' Table,Setup,-6' tables,FALSE
+8 ft screen,Setup,eight foot screens,FALSE
+8' table,Setup,-8' tables,FALSE
+AV cart,Setup,AV cart,FALSE
+A-Frame,Setup,A-Frames,FALSE
+AV Standard,Setup,AV standards,FALSE
+Cab power podium,Setup,cab power podiums,FALSE
+Coat Rack,Setup,coat racks,FALSE
+Large Base,Setup,large bases,TRUE
+Flip Chart,Setup,flip charts,FALSE
+Flip Chart (1),Setup,flip charts,FALSE
+Liberty System,Setup,liberty systems,FALSE
+Mic Stand,Setup,mic stands,FALSE
+monitor speaker,Setup,monitor speakers,FALSE
+Round w/ 8 chairs,Setup,rounds with 8 chairs each,FALSE
+"Round with 6 chairs, front",Setup,rounds with 6 chairs each facing the front,FALSE
+PCL chair,Setup,chairs,FALSE
+Pods for 6,Setup,pods for six,FALSE
+"Round with 6 chairs, inward",Setup,rounds with 6 chairs each,FALSE
+"Round with 7 chairs, front",Setup,rounds with 7 chairs each facing the front,FALSE
+"Round with 7 chairs, inward",Setup,rounds with 7 chairs each,FALSE
+Shoji Screen,Setup,shoji screens,FALSE
+Skinny Table,Setup,skinny tables,FALSE
+skirt,Setup,skirts,FALSE
+Skirted 6ft Table,Setup,"-6' tables, skirted",FALSE
+Small Base,Setup,small bases,FALSE
+Stanchion,Setup,stanchions,FALSE
+Trash,Setup,trashes,TRUE
+Trash small,Setup,small trashes,TRUE
+Triad - 3,Setup,Triad - 3,TRUE
+Triad - Compost,Setup,Compost,TRUE
+TRIAD LARGE,Setup,large triads,TRUE
+Triad-2,Setup,Triad - 2,TRUE
+Unarmed Chair,Setup,chairs,FALSE

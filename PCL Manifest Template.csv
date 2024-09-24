@@ -1,0 +1,49 @@
+﻿section,Text,Bold,Underline,linebreak after,tab before,listLevel,DELAY
+topOfPage,EVENT:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,EVENT NAME,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,DATE:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,EVENT DATE,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+topOfPage,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+topOfPage,AREA RESERVED:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,PCL,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,ESTIMATED ATTENDANCE:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,~,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+topOfPage,PRODUCTION,TRUE,TRUE,TRUE,FALSE,0,FALSE
+listPortion,See diagram for specific set-up locations.,FALSE,FALSE,TRUE,FALSE,1,FALSE
+listPortion,GAP,FALSE,FALSE,TRUE,FALSE,1,TRUE
+listPortion,GAP,FALSE,FALSE,TRUE,FALSE,1,TRUE
+listPortion,GAP,FALSE,FALSE,TRUE,FALSE,1,TRUE
+notesPortion,"Please set out the air purifiers (one in the front, one in the back). Opening turn them on to level 3, closing turn them off and unplug.",FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,"Opening please unplug bug lights & hang them up in the chair closet. Closing, plug them back in.",FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,Close kitchen curtain,FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,Take sign across the bridge.,FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,Catering: ,FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+notesPortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+notesPortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+schedulePortion,EVENT DATE,TRUE,TRUE,TRUE,FALSE,0,FALSE
+schedulePortion,GAP,FALSE,FALSE,FALSE,TRUE,0,FALSE
+schedulePortion,SCHEDULE,TRUE,TRUE,FALSE,FALSE,0,FALSE
+schedulePortion,LOAD IN TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Client should arrive to begin setting up the room.,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,EVENT TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Event should begin.,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,END TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Event should end. Load out will begin.,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,LOAD OUT TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Load out should be complete. Put away any AV that was used. Check for any lost and,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,"found items (note in closing & slack Bri). Cleaning: Remove trash from PCL,",FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,"vacuum, & wipe down counters & tables.",FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+schedulePortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+contactPortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+contactPortion,GAP,FALSE,FALSE,FALSE,TRUE,0,FALSE
+contactPortion,CONTACT INFORMATION,TRUE,TRUE,TRUE,FALSE,0,FALSE
+contactPortion,MU/PCL CONTACT:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+contactPortion,Kerry Rafetto: 916-934-9696; Brianna Torres: 619-751-1198,TRUE,FALSE,TRUE,TRUE,0,FALSE
+contactPortion,CLIENT:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+contactPortion,CLIENT INFO,TRUE,FALSE,TRUE,TRUE,0,FALSE
+contactPortion,RESERVATION NUMBER:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+,#,TRUE,FALSE,FALSE,TRUE,0,FALSE

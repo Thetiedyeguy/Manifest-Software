@@ -1,0 +1,57 @@
+﻿section,Text,Bold,Underline,linebreak after,tab before,listLevel,DELAY
+topOfPage,EVENT:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,EVENT NAME,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,DATE:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,EVENT DATE,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+topOfPage,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+topOfPage,AREA RESERVED:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,MU,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,ESTIMATED ATTENDANCE:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+topOfPage,~,TRUE,FALSE,TRUE,TRUE,0,FALSE
+topOfPage,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+topOfPage,PRODUCTION,TRUE,TRUE,TRUE,FALSE,0,FALSE
+topOfPage,MPR,TRUE,TRUE,TRUE,FALSE,0,FALSE
+listPortion,See diagram for specific set-up locations.,FALSE,FALSE,TRUE,FALSE,1,FALSE
+listPortion,Set-up 1 study table (skirted) outside the room with 2 chairs for registration.,FALSE,FALSE,TRUE,FALSE,1,TRUE
+listPortion,Setup the podium with mic near the AV closet and use the RACK laptop connection.,FALSE,FALSE,TRUE,FALSE,1,TRUE
+listPortion,Set up the HDMI cord and Direct Box,FALSE,FALSE,TRUE,FALSE,2,TRUE
+listPortion,We have a new projector that needs to be turned on with remote in the AV closet.,TRUE,FALSE,TRUE,FALSE,1,TRUE
+listPortion,DO NOT use the remote for anything other than turning ON/OFF the projector.,TRUE,FALSE,TRUE,FALSE,2,TRUE
+listPortion,Use the wall panel as normal.,TRUE,FALSE,TRUE,FALSE,2,TRUE
+listPortion,GAP,FALSE,FALSE,TRUE,FALSE,1,TRUE
+listPortion,GAP,FALSE,FALSE,TRUE,FALSE,1,TRUE
+listPortion,GAP,FALSE,FALSE,TRUE,FALSE,1,TRUE
+notesPortion,Make sure to turn the projector off at the end of the event and grab BSUPE for AV remote checklist.,TRUE,TRUE,TRUE,FALSE,1,FALSE
+notesPortion,Please do a sound check prior to client's arrival.,FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,Please remember to lock the touchscreen.,FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,Please ensure there are 3 panel mics and 1 wireless mic set-up.,FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,Catering: ,FALSE,FALSE,TRUE,FALSE,1,FALSE
+notesPortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+notesPortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+notesPortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+schedulePortion,GAP,FALSE,FALSE,FALSE,TRUE,0,FALSE
+schedulePortion,SCHEDULE,TRUE,TRUE,TRUE,FALSE,0,FALSE
+schedulePortion,EVENT DATE,TRUE,TRUE,TRUE,FALSE,0,FALSE
+schedulePortion,LOAD IN TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Client should arrive to begin setting up the room.,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,EVENT TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Event should begin.,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,END TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Event should end. Load out will begin.,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,LOAD OUT TIME,FALSE,FALSE,FALSE,FALSE,0,FALSE
+schedulePortion,Load out should be complete. Turn off projector & raise screen. Put away,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,"microphones & collect small AV equipment that was used (slide advancer, etc.). Check",FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,for any lost and found items (note in daily report and take to SM). Cleaning: Remove,FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,"trash from MPR, vacuum, & wipe down counters & tables.",FALSE,FALSE,TRUE,TRUE,0,FALSE
+schedulePortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+schedulePortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+schedulePortion,GAP,FALSE,FALSE,TRUE,FALSE,0,FALSE
+contactPortion,GAP,FALSE,FALSE,FALSE,TRUE,0,FALSE
+contactPortion,CONTACT INFORMATION,TRUE,TRUE,TRUE,FALSE,0,FALSE
+contactPortion,SCC CONTACT:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+contactPortion,BRIANNA TORRES 619.751.1198,TRUE,FALSE,TRUE,TRUE,0,FALSE
+contactPortion,CLIENT:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+contactPortion,CLIENT INFO,TRUE,FALSE,TRUE,TRUE,0,FALSE
+contactPortion,RESERVATION NUMBER:,FALSE,FALSE,FALSE,FALSE,0,FALSE
+contactPortion,#,TRUE,FALSE,FALSE,TRUE,0,FALSE

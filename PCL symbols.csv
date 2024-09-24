@@ -1,0 +1,39 @@
+Name,Before Text,After Text,Ignore
+3' Cocktail Table,BLANK,cocktail tables,FALSE
+5' Round,BLANK,rounds,FALSE
+6' Table,BLANK,-6' tables,FALSE
+8 ft screen,BLANK,eight foot screens,FALSE
+8' table,BLANK,-8' tables,FALSE
+AV cart,BLANK,AV cart,FALSE
+A-Frame,BLANK,A-Frames,FALSE
+AV Standard,BLANK,AV standards,FALSE
+Cab power podium,BLANK,cab power podiums,FALSE
+Coat Rack,BLANK,coat racks,FALSE
+Large Base,BLANK,large bases,TRUE
+Flip Chart,BLANK,flip charts,FALSE
+Flip Chart (1),BLANK,flip charts,FALSE
+Liberty System,BLANK,liberty systems,FALSE
+Mic Stand,BLANK,mic stands,FALSE
+monitor speaker,BLANK,monitor speakers,FALSE
+Round w/ 8 chairs,BLANK,rounds with 8 chairs each,FALSE
+"Round with 6 chairs, front",BLANK,rounds with 8 chairs each,FALSE
+PCL chair,BLANK,chairs,FALSE
+Pods for 6,BLANK,pods for six,FALSE
+"Round with 6 chairs, inward",BLANK,rounds with 6 chairs each,FALSE
+"Round with 7 chairs, front",BLANK,rounds with 7 chairs each facing the front,FALSE
+"Round with 7 chairs, inward",BLANK,rounds with 7 chairs each,FALSE
+Shoji Screen,BLANK,shoji screens,FALSE
+Skinny Table,BLANK,skinny tables,FALSE
+skirt,BLANK,skirts,FALSE
+Skirted 6ft Table,BLANK,"-6' tables, skirted",FALSE
+Small Base,BLANK,small bases,FALSE
+Stanchion,BLANK,stanchions,FALSE
+Trash,BLANK,trashes,TRUE
+Trash small,BLANK,small trashes,TRUE
+Triad - 3,BLANK,Triad - 3,TRUE
+Triad - Compost,BLANK,Compost,TRUE
+TRIAD LARGE,BLANK,large triads,TRUE
+Triad-2,BLANK,Triad - 2,TRUE
+Unarmed Chair,BLANK,chairs,FALSE
+Catering Table,BLANK,"-6' tables, skirted along the north wall for catering",FALSE
+Chair,BLANK,chairs,FALSE
